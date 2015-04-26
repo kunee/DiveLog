@@ -1,8 +1,14 @@
 package de.kunee.divelog.data;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.provider.BaseColumns;
 
-public interface DiveLogContract {
+public final class DiveLogContract {
+
+    /* CONTENT_URI = content://de.kunee.divelog.provider/dives */
+    public static final String CONTENT_AUTHORITY = "de.kunee.divelog.provider";
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static interface Dives extends BaseColumns {
 
@@ -29,5 +35,17 @@ public interface DiveLogContract {
         public static final String GLOVES = "gloves";
         public static final String BOOTS = "boots";
         public static final String COMMENTS = "comments";
+
+        // Content Provider
+        public static final String PATH = "dives";
+        public static final Uri CONTENT_URI = getContentUri(PATH);
+        public static final String CONTENT_DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH;
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH;
+    }
+
+    private static Uri getContentUri(String path) {
+        return BASE_CONTENT_URI.buildUpon().appendPath(path).build();
     }
 }

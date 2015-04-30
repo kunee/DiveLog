@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_primary">@color/light_blue_500</color>
+    <color name="color_primary_dark">@color/light_blue_700</color>
+    <color name="color_accent">@color/lime_a200</color>
+
+    <color name="light_blue_100">#B3E5FC</color>
+    <color name="light_blue_500">#03A9F4</color>
+    <color name="light_blue_700">#0288D1</color>
+    <color name="lime_a200">#EEFF41</color>
+
+</resources>

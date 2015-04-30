@@ -61,7 +61,7 @@ public class DiveLogContentProvider extends ContentProvider {
             case DIVE_WITH_ID:
                 if (selection == null) selection = "";
                 if (!TextUtils.isEmpty(selection)) selection += " AND ";
-                selection = selection + Dives._ID + " = " + uri.getLastPathSegment();
+                selection += Dives._ID + " = " + uri.getLastPathSegment();
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);

@@ -10,9 +10,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper implements DiveLogContr
     private static final int DATABASE_VERSION = 1;
 
     private static final String SQL_CREATE_TABLE_DIVE = "CREATE TABLE " + TABLE_NAME + " (" +
-            _ID + "  INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            DIVE_NO + "  INTEGER NOT NULL, " +
-            DIVE_DATE + " TEXT NOT NULL, " +
+            _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            DIVE_NO + " INTEGER NOT NULL, " +
+            DIVE_DATE + " INTEGER NOT NULL, " +
             LOCATION + " TEXT, " +
             TIME_IN + " TEXT, " +
             DURATION_BOTTOM_TIME + " INTEGER, " +
@@ -34,6 +34,12 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper implements DiveLogContr
             COMMENTS + " TEXT" +
             ")";
 
+    private static final String SQL_INSERT_INTO_DIVE = "INSERT INTO " + TABLE_NAME + " (" +
+            DIVE_NO + ", " +
+            DIVE_DATE + ", " +
+            LOCATION +
+            ") VALUES (%s, %s, '%s')";
+
     private static final String SQL_DROP_TABLE_DIVE = "DROP TABLE " + TABLE_NAME;
 
     public DatabaseOpenHelper(Context context) {
@@ -43,6 +49,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper implements DiveLogContr
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_DIVE);
+        db.execSQL(String.format(SQL_INSERT_INTO_DIVE, 1, System.currentTimeMillis(), "Hawaii"));
+        db.execSQL(String.format(SQL_INSERT_INTO_DIVE, 2, System.currentTimeMillis(), "Bahamas"));
+        db.execSQL(String.format(SQL_INSERT_INTO_DIVE, 3, System.currentTimeMillis(), "Maldives"));
     }
 
     @Override
